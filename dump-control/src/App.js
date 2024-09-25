@@ -7,33 +7,34 @@ import "./App.css";
 
 function App() {
   const [expenses, setExpenses] = useState([]);
-  const [filter, setFilter] = useState("");
 
   const addExpense = (expense) => {
-    setExpenses([...expenses, expense]);
+    const expenseWithNumber = {
+      ...expense,
+      amount: parseFloat(expense.amount) || 0,
+    };
+    setExpenses([...expenses, expenseWithNumber]);
   };
 
   const removeExpense = (expenseToRemove) => {
     setExpenses(expenses.filter((expense) => expense !== expenseToRemove));
   };
 
-  const handleFilterChange = (newFilter) => {
-    setFilter(newFilter);
-  };
-
-  const filteredExpenses = filter
-    ? expenses.filter((expense) => expense.category === filter)
-    : expenses;
+  const totalExpenses = expenses.reduce(
+    (total, expense) => total + expense.amount,
+    0
+  );
 
   return (
     <div>
       <Header title="Controle de Despesas" />
       <div className="formControl">
         <ExpenseForm onAddExpense={addExpense} />
-        <ExpenseList
-          expenses={filteredExpenses}
-          onRemoveExpense={removeExpense}
-        />
+        <ExpenseList onRemoveExpense={removeExpense} expenses={expenses} />
+        <h2 className="total-expenses">
+          Total de Despesas: R$ {totalExpenses.toFixed(2)}
+        </h2>{" "}
+        {/* Exibindo o total */}
       </div>
       <Footer />
     </div>

@@ -10,8 +10,8 @@ const ExpenseForm = ({ onAddExpense }) => {
     e.preventDefault();
     onAddExpense({ title, amount, category });
     setTitle("");
+    setTitle("");
     setAmount("");
-    setCategory("");
   };
 
   return (
@@ -19,21 +19,21 @@ const ExpenseForm = ({ onAddExpense }) => {
       <input
         type="text"
         value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        onChange={(e) => setTitle(e.target.value.toUpperCase())}
         placeholder="Título"
         required
       />
       <input
         type="number"
         value={amount}
-        onChange={(e) => setAmount(e.target.value)}
+        onChange={(e) => setAmount(e.target.value.toUpperCase())}
         placeholder="Valor"
         required
       />
       <input
         type="text"
         value={category}
-        onChange={(e) => setCategory(e.target.value)}
+        onChange={(e) => setCategory(e.target.value.toUpperCase())}
         placeholder="Categoria"
         required
       />

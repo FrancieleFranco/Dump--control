@@ -6,7 +6,7 @@ const ExpenseItem = ({ expense, onRemoveExpense }) => {
     <li>
       <strong>{expense.title}</strong>{" "}
       <strong>Valor: R$ {expense.amount} </strong>
-      Categoria: {expense.category}
+      <strong> Categoria: {expense.category}</strong>
       <button onClick={() => onRemoveExpense(expense)}>Remover</button>
     </li>
   );
